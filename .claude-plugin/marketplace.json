@@ -4,7 +4,7 @@
     "name": "Yoann Yviquel"
   },
   "metadata": {
-    "description": "Marketplace Claude Code de Yoann Yviquel — agents/skills de développement spécialisés et mémoire persistante, importables via plugin"
+    "description": "Marketplace Claude Code de Yoann Yviquel — agents/skills de développement spécialisés importables via plugin"
   },
   "plugins": [
     {
@@ -12,12 +12,6 @@
       "version": "1.3.0",
       "source": "./it-agents",
       "description": "Agents de développement spécialisés (skills) : dotnet-developer, react-developer (implémentation, tests, revue) et code-architect (conception d'architecture par design patterns GoF, ADR, plan de dev Claude Code)"
-    },
-    {
-      "name": "memory",
-      "version": "0.1.2",
-      "source": "./memory",
-      "description": "Mémoire persistante Claude Code en SQLite local. Capture brute via hooks (SessionStart/UserPromptSubmit/PostToolUse/Stop/SessionEnd), recherche hybride BM25 (FTS5) + sémantique (sqlite-vec + embeddings locaux transformers.js, q8), migration depuis claude-mem. Embarqué : zéro serveur, zéro démon, zéro cloud."
     }
   ]
 }
