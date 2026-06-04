@@ -1,0 +1,4 @@
+# Reference design-pattern samples bundled with the code-architect skill.
+# They are reference data, not this repo's own source code — exclude them
+# from GitHub Linguist language statistics.
+it-agents/skills/code-architect/references/code-examples/** linguist-vendored
