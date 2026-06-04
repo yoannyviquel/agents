@@ -1,21 +1,21 @@
 # it-agents
 
-Plugin Claude Code embarquant des **agents de développement spécialisés** sous forme de skills.
+Claude Code plugin bundling **specialized development agents** as skills.
 
-## Skills inclus
+## Included skills
 
-| Skill | Rôle |
+| Skill | Role |
 |-------|------|
-| `dotnet-developer` | Spécialiste implémentation .NET — user stories, code testé/propre, revue, refactoring |
-| `react-developer` | Spécialiste implémentation React — user stories, code testé/propre, revue, refactoring |
-| `code-architect` | Architecte logiciel — conçoit une architecture à base de design patterns (base de connaissances *Dive Into Design Patterns* embarquée : 22 patterns GoF + principes + exemples 10 langages), cartographie l'impact sur 3 niveaux, livre plan d'archi, ADR et plan de dev Claude Code |
+| `dotnet-developer` | .NET implementation specialist — user stories, tested/clean code, review, refactoring |
+| `react-developer` | React implementation specialist — user stories, tested/clean code, review, refactoring |
+| `code-architect` | Software architect — designs an architecture based on design patterns (bundled *Dive Into Design Patterns* knowledge base: 22 GoF patterns + principles + examples in 10 languages), maps impact across 3 levels, delivers an architecture plan, ADRs and a Claude Code dev plan |
 
-Mots-clés des skills *developer* : `implement story`, `dev story`, `code`, `implement`, `build feature`, `fix bug`, `write tests`, `code review`, `refactor`.
-Mots-clés de `code-architect` : `design architecture`, `architect this`, `which pattern`, `design pattern`, `architecture plan`, `ADR`.
+*developer* skill keywords: `implement story`, `dev story`, `code`, `implement`, `build feature`, `fix bug`, `write tests`, `code review`, `refactor`.
+`code-architect` keywords: `design architecture`, `architect this`, `which pattern`, `design pattern`, `architecture plan`, `ADR`.
 
 ## Installation
 
-Via la marketplace `yoannyviquel` :
+Via the `yoannyviquel` marketplace:
 
 ```
 /plugin marketplace add yoannyviquel/agents
@@ -36,6 +36,6 @@ it-agents/
         └── references/
             ├── patterns-index.md
             ├── principles/        # OOP, design principles, SOLID
-            ├── creational/ structural/ behavioral/   # 22 fiches pattern
-            └── code-examples/      # exemples 10 langages + INDEX.md
+            ├── creational/ structural/ behavioral/   # 22 pattern sheets
+            └── code-examples/      # examples in 10 languages + INDEX.md
 ```
