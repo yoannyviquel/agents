@@ -1,5 +1,5 @@
 {
-  "name": "it-agents",
+  "name": "agents",
   "version": "1.3.0",
   "description": "Agents de développement spécialisés importables : dotnet-developer, react-developer (implémentation, tests, revue, refactoring) et code-architect (conception d'architecture par design patterns, ADR, plan de dev).",
   "author": {
