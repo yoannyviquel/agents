@@ -1,0 +1,17 @@
+{
+  "name": "yoannyviquel",
+  "owner": {
+    "name": "Yoann Yviquel"
+  },
+  "metadata": {
+    "description": "Marketplace Claude Code de Yoann Yviquel — agents/skills de développement spécialisés importables via plugin"
+  },
+  "plugins": [
+    {
+      "name": "it-agents",
+      "version": "0.1.0",
+      "source": "./it-agents",
+      "description": "Agents de développement spécialisés (skills) : dotnet-developer et react-developer — implémentation de user stories, code testé et propre, revues de code"
+    }
+  ]
+}

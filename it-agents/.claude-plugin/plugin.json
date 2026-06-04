@@ -1,0 +1,9 @@
+{
+  "name": "it-agents",
+  "version": "0.1.0",
+  "description": "Agents de développement spécialisés importables : dotnet-developer et react-developer. Implémentation de user stories, code testé/propre, revue de code, refactoring.",
+  "author": {
+    "name": "Yoann Yviquel"
+  },
+  "skills": "./skills/"
+}
