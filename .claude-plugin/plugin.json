@@ -1,7 +1,7 @@
 {
   "name": "agents",
-  "version": "1.5.4",
-  "description": "Importable specialized development agents: dotnet-developer, react-developer, ios-game-developer (implementation, tests, review, refactoring) and code-architect (architecture design through design patterns, ADRs, dev plan).",
+  "version": "1.6.0",
+  "description": "Importable specialized development agents: dotnet-developer, react-developer, nodejs-developer, ios-game-developer (implementation, tests, review, refactoring) and code-architect (architecture design through design patterns, ADRs, dev plan).",
   "author": {
     "name": "Yoann Yviquel"
   },
