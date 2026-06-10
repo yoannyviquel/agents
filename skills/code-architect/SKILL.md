@@ -90,6 +90,28 @@ Output: ADR file(s) + the development plan. Implementation itself is handed off 
 
 ---
 
+## Subagent Strategy (parallelize exploration and analysis)
+
+When the subject is large, fan out **read-only** work to parallel subagents via `Task` to cover more ground without bloating the main context. Subagents gather and return findings; the main context always synthesizes, decides, and remains the single place where the gating steps and user approvals happen. Never delegate a decision, a user question, or the approval itself.
+
+**Where it helps:**
+
+| Step | Fan-out | Each subagent returns |
+|------|---------|-----------------------|
+| Step 2 — Impact Map | one agent per subsystem / module / service in the blast radius | the L1/L2/L3 findings for its area (files, symbols, contracts, tests, unknowns) |
+| Step 3 — Pattern shortlist | one agent per **candidate** pattern | that candidate read in full (Intent, Applicability, Pros/Cons, Relations) scored against the forces from Steps 1–2 |
+
+**Rules:**
+1. Only fan out once the functional need is confirmed (Step 1 done) — never parallelize away an unclear requirement.
+2. Subagents are **read-only** (Glob/Grep/Read, Bash for structure). They must not write code, ADRs, or the plan.
+3. Each subagent is given the Problem Statement and a tightly scoped area; it returns a structured summary, not prose.
+4. The main context dedupes, reconciles conflicts, and builds the single Impact Map / pattern comparison. Divergent subagent findings are a signal to verify, not to average.
+5. Keep grounding intact: a subagent citing a pattern must have read its reference file, same as the main agent.
+
+**Best for:** multi-module/multi-service blast radius, or a shortlist of 3+ candidate patterns to weigh. For a small, single-module change, stay sequential — the coordination overhead isn't worth it.
+
+---
+
 ## Guardrails
 - Never skip Step 1; never design before the functional need is confirmed.
 - Never recommend a pattern absent from the knowledge base, and never cite a pattern without having read its reference file.
