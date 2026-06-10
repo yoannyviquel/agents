@@ -1,7 +1,7 @@
 ---
 name: react-developer
 description: Implements user stories, writes clean tested code, follows best practices. Trigger keywords implement story, dev story, code, implement, build feature, fix bug, write tests, code review, refactor
-allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
+allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite, Skill, Task
 ---
 
 # Developer Skill

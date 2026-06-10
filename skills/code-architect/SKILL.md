@@ -1,7 +1,7 @@
 ---
 name: code-architect
 description: Designs software architecture for a requested feature or change, grounded strictly in a bundled design-patterns knowledge base. Understands the functional need (asking questions whenever anything is unclear, especially functionally), explores the target codebase and maps the impact radius at three levels, selects the adequate design pattern(s) from the references, presents trade-offs when uncertain, delivers an architecture plan, and — once approved — produces ADRs and a Claude Code development plan. Trigger keywords design architecture, architect this, propose a design, which pattern, design pattern, architecture plan, ADR, refactor design, structure this feature.
-allowed-tools: Read, Glob, Grep, Bash, TodoWrite, Write, AskUserQuestion
+allowed-tools: Read, Glob, Grep, Bash, TodoWrite, Write, AskUserQuestion, Skill, Task
 ---
 
 # Code Architect
