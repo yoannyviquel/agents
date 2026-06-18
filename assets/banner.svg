@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 180" width="880" height="180" role="img" aria-label="agents — specialist developers and an architect as skills">
+  <defs>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fbbf24"/>
+      <stop offset="1" stop-color="#f59e0b"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#f59e0b" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#f59e0b" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect x="1" y="1" width="878" height="178" rx="18" fill="#0d1117" stroke="#f59e0b" stroke-opacity="0.45"/>
+  <circle cx="96" cy="90" r="78" fill="url(#glow)"/>
+  <!-- cluster of agents motif -->
+  <g stroke="#f59e0b" stroke-width="2.2" fill="#0d1117">
+    <line x1="96" y1="62" x2="68" y2="106"/>
+    <line x1="96" y1="62" x2="124" y2="106"/>
+    <line x1="68" y1="106" x2="124" y2="106"/>
+  </g>
+  <g fill="url(#acc)">
+    <circle cx="96" cy="62" r="14"/>
+    <circle cx="68" cy="106" r="12"/>
+    <circle cx="124" cy="106" r="12"/>
+  </g>
+  <text x="190" y="84" font-family="ui-monospace,'SF Mono','JetBrains Mono','Fira Code',monospace" font-size="46" font-weight="700" fill="#f0f6fc">agents</text>
+  <rect x="192" y="100" width="150" height="5" rx="2.5" fill="url(#acc)"/>
+  <text x="192" y="132" font-family="ui-sans-serif,'Segoe UI',Helvetica,Arial,sans-serif" font-size="18" fill="#8b949e">Specialist devs + an architect, one keyword away</text>
+  <text x="836" y="40" text-anchor="end" font-family="ui-monospace,monospace" font-size="13" fill="#6e7681">5 skills</text>
+</svg>
