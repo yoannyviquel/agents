@@ -112,6 +112,17 @@ Use this checklist when reviewing code before marking a story complete or during
 - [ ] Form validation provides clear feedback
 - [ ] No console errors or warnings
 
+### React (team standards — see resources/react-team-review-standards.md)
+
+- [ ] Forms use react-hook-form + zod (`mode: 'onBlur'`); no hand-rolled conditional validation
+- [ ] Mutations: `onSuccess`/`onError` at the `mutate()` call site; cache invalidation on `useMutation`; `isPending` used for the awaiting state
+- [ ] No state that could be derived during render; subtree reset via `key` (refs/`useImperativeHandle` only as a last resort); `useEffect` disciplined
+- [ ] Objects passed instead of many scalar props; no deep prop drilling
+- [ ] Existing TS types/constants/enums reused; `import type` for type-only imports; no magic literals
+- [ ] i18n: keys built from enums (`kebabCase`); `<Trans>` used for translations with markup
+- [ ] Design System iso: no manual icon sizing; DS components reused
+- [ ] Tests: one per behavior change, negative/complementary cases covered, scoped with `within()`, `ByRole`/`ByLabelText` preferred (test-id as escape hatch), named by behavior
+
 ## Git and Version Control
 
 - [ ] Commits are small and focused

@@ -68,6 +68,14 @@ Base all subsequent work on this updated baseline so it aligns with the team’s
 - [ ] Pages are the only data-fetching layer
 - [ ] Component has a colocated test file
 
+**React review checklist (team) before completion** — see [React Team Review Standards](resources/react-team-review-standards.md):
+- [ ] Forms use react-hook-form + zod with `mode: 'onBlur'`
+- [ ] `mutate()`-level `onSuccess`/`onError` for UI effects; invalidation on `useMutation`; `isPending` used
+- [ ] No state that could be derived; subtree reset via `key`, not extra state/refs
+- [ ] Objects passed instead of many props; existing types/constants/enums reused; `import type` used
+- [ ] DS components iso (no manual icon sizing); `<Trans>` for markup translations
+- [ ] Tests cover negative cases, use `within()` + `ByRole`/`ByLabelText` (test-id last resort), named by behavior
+
 ## Implementation Approach
 
 ### 1. Understand Requirements
@@ -121,6 +129,17 @@ See [REFERENCE.md](REFERENCE.md) for complete standards. Key requirements:
 
 **UI architecture:**
 - All React components MUST respect Atomic Design (atoms / molecules / organisms / templates / pages). See [Design Constraint: Atomic Design](#design-constraint-atomic-design).
+
+**React & TypeScript (team review standards):**
+Apply the team's React/TS conventions proactively — they are distilled from real PR review feedback and cross-checked against official docs. Full details + ✅/❌ examples + sources in [React Team Review Standards](resources/react-team-review-standards.md). Key rules:
+- **Forms**: react-hook-form + zod (`@hookform/resolvers`), validate on `onBlur`; no hand-rolled conditional validation.
+- **Mutations (TanStack Query)**: pass `onSuccess`/`onError` at the `mutate()` call site; keep cache invalidation on `useMutation`; use `isPending` for the awaiting state.
+- **State**: derive during render (no redundant `useState`); reset a subtree with `key`; `useImperativeHandle` only as a last resort; keep `useEffect` disciplined (one effect, no duplicated redirects).
+- **Props**: pass the object instead of many scalar props (≤ 3–4 scalars); avoid deep prop drilling (→ Context).
+- **TypeScript**: reuse existing types; `import type` for type-only imports; use existing constants/enums, no magic literals.
+- **i18n**: build keys from the enum (`kebabCase(value)`); `<Trans>` for translations containing markup.
+- **Design System (`@cdiscount/design-system`)**: keep components iso, never resize icons manually, reuse DS components.
+- **Tests (Testing Library)**: a test per behavior change (placed where the behavior lives), cover negative/complementary cases, scope with `within()`, prefer `ByRole`/`ByLabelText` (test-id as escape hatch), name tests by behavior.
 
 **Testing:**
 - Unit tests for individual functions/components

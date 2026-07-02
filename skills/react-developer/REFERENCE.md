@@ -575,6 +575,87 @@ if (errors) {
 }
 ```
 
+## React Patterns (Team Standards)
+
+Conventions enforced in team code review, cross-checked against official docs. See
+[resources/react-team-review-standards.md](resources/react-team-review-standards.md) for the full
+list, rationale, and sources.
+
+### Forms — react-hook-form + zod, validate on blur
+
+```tsx
+// ✅ Good - schema-driven validation, on blur
+const form = useForm<MessageForm>({
+  mode: 'onBlur',
+  resolver: zodResolver(messageSchema),
+});
+
+// ❌ Bad - manual conditional validation + useState error flags
+const [error, setError] = useState('');
+if (!message && recipient === 'operator') setError('Message required');
+```
+
+### Mutations — callbacks at the `mutate()` call site (TanStack Query)
+
+```tsx
+// ✅ Good - UI-scoped effects at the call site; use isPending for the awaiting state
+const { mutate, isPending } = useSendMessage();
+const onSubmit = (values: MessageForm) =>
+  mutate(values, { onSuccess: () => { snackbar.success(); reset(); } });
+
+// ✅ Good - invalidation stays on the hook (survives unmount)
+useMutation({ mutationFn, onSuccess: () => queryClient.invalidateQueries({ queryKey }) });
+
+// ❌ Bad - threading a success callback down as a prop, or restating the default handler
+<MessageForm onSuccessCallback={handleSuccess} />
+```
+
+### State — derive during render; reset with `key`, not extra state
+
+```tsx
+// ✅ Good - computed during render, no redundant state
+const fullName = `${firstName} ${lastName}`;
+// ✅ Good - reset a subtree by remounting it
+<ResponseTemplateDropdown key={sentCount} />
+
+// ❌ Bad - redundant state synced by an effect (also: exposing reset() via ref as first choice)
+const [fullName, setFullName] = useState('');
+useEffect(() => setFullName(`${firstName} ${lastName}`), [firstName, lastName]);
+```
+
+### Props — pass the object, not many scalars
+
+```tsx
+// ✅ Good
+<ThreadHeader thread={thread} />
+// ❌ Bad - "that's a lot of props"
+<ThreadHeader id={thread.id} title={thread.title} status={thread.status} receiver={thread.receiver} />
+```
+
+### Tests — scope with `within`, accessible queries, test-id as escape hatch
+
+```tsx
+// ✅ Good - scoped, accessible, behavior-named; covers the negative case
+const panel = screen.getByRole('region', { name: /discussion/i });
+within(panel).getByRole('button', { name: /send/i });
+it('does not show the alert when the recipient is the customer', () => { /* … */ });
+
+// ❌ Bad - reaching into a child's internal DOM structure; opaque name
+it('toggle test 1', () => { container.querySelector('.toggle > span > input'); });
+```
+
+### TypeScript — reuse types, type-only imports
+
+```tsx
+// ✅ Good - reuse the domain type; type-only import is elided from JS
+import type { ThreadRecipient } from './types';
+function Row({ recipient }: { recipient: ThreadRecipient }) { /* … */ }
+
+// ❌ Bad - re-declaring an equivalent type; value import used only as a type
+import { ThreadRecipient } from './types';
+function Row({ recipient }: { recipient: 'customer' | 'operator' }) { /* … */ }
+```
+
 ## Summary
 
 - Write clean, readable code with descriptive names
@@ -590,4 +671,5 @@ if (errors) {
 For more resources, see:
 - [resources/clean-code-checklist.md](resources/clean-code-checklist.md)
 - [resources/testing-standards.md](resources/testing-standards.md)
+- [resources/react-team-review-standards.md](resources/react-team-review-standards.md)
 - [templates/code-review.template.md](templates/code-review.template.md)
