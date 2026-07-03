@@ -81,6 +81,14 @@ Unless the project pins otherwise (read `.nvmrc`, `package.json#engines`, CI con
 - [ ] Data access lives only in repositories
 - [ ] Each module has colocated tests
 
+## Architecture, planning & review — `/code-architect`
+
+`agents:code-architect` is the design backbone for this skill. **When it is installed** (check the available-skills list first), lean on it across all three phases of any non-trivial story — a new feature/module, a cross-cutting change, or anything with a real design decision. Skip it only for trivial bug fixes or localized edits. If it is not installed, do the equivalent reasoning inline and state that you fell back.
+
+- **Plan** — before writing code, invoke `/code-architect` to produce the impact map, the chosen pattern(s), the architecture plan, the ADRs, and the development plan. Build your TodoWrite task list from that development plan rather than an ad-hoc breakdown.
+- **Produce** — implement strictly against the approved plan and ADRs: each change fills a role the plan defined. If a design question the plan didn't answer surfaces mid-implementation, pause and consult `/code-architect` instead of improvising a structural decision.
+- **Review** — before marking the story done, run an architectural review: invoke `/code-architect` in review mode to audit the implementation against the approved architecture and ADRs (pattern fidelity, SOLID, layered-architecture and dependency-direction/impact-radius adherence, drift). Reconcile every finding — fix the code or record a justified deviation — as part of your self code review.
+
 ## Implementation Approach
 
 ### 1. Understand Requirements
@@ -194,13 +202,13 @@ When implementing a story:
    - Review existing codebase structure and feature folders
    - Identify relevant files and modules
 
-2. **Create Task List**
-   - Use TodoWrite to break story into tasks
-   - Include implementation, testing, and validation tasks
+2. **Plan the architecture & task list**
+   - Non-trivial story: invoke `/code-architect` (if installed) for the architecture plan, ADRs, and development plan; otherwise reason inline. See [Architecture, planning & review](#architecture-planning--review--code-architect).
+   - Use TodoWrite to break the story into tasks, derived from the development plan (implementation, testing, validation)
    - Track progress as you work
 
 3. **Implement Incrementally**
-   - Work bottom-up: data → service → transport
+   - Work bottom-up: data → service → transport, against the approved plan/ADRs
    - Write tests alongside code
    - Commit small, logical changes
    - Run tests frequently
@@ -210,6 +218,7 @@ When implementing a story:
    - Check coverage with scripts/check-coverage.sh
    - Run lint + type-check; `npm audit` on dependency changes
    - Verify all acceptance criteria
+   - Architectural review — invoke `/code-architect` in review mode (if installed) to audit the code against the approved architecture/ADRs; reconcile its findings
    - Perform self code review
    - Manual endpoint testing if needed
 

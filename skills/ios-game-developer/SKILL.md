@@ -76,9 +76,13 @@ Base all subsequent work on this updated baseline so it aligns with the team's m
 
 This skill is an **orchestrator**: when specialized skills are installed, delegate to them via the `Skill` tool instead of reinventing their work. **Always check availability first** — a skill is usable only if it appears in the session's available-skills list. If absent, fall back to the manual approach and state which fallback you used. Never assume a skill is present; never invent a skill name.
 
-### Architecture & design — `/code-architect`
+### Architecture, planning & review — `/code-architect`
 
-Before implementing any non-trivial story (new game system, new mechanic, cross-cutting change, or anything needing a design decision), **if `agents:code-architect` is installed**, invoke it first to get a grounded architecture plan / ADRs, then implement against that plan. Skip it for trivial bug fixes or localized edits. If it is not installed, do the design reasoning inline.
+`agents:code-architect` is the design backbone for this skill. **When it is installed** (check the available-skills list first), lean on it across all three phases of any non-trivial story — a new game system/mechanic, a cross-cutting change, or anything with a real design decision. Skip it only for trivial bug fixes or localized edits. If it is not installed, do the equivalent reasoning inline and state that you fell back.
+
+- **Plan** — before writing code, invoke `/code-architect` to produce the impact map, the chosen pattern(s), the architecture plan, the ADRs, and the development plan. Build your TodoWrite task list from that development plan rather than an ad-hoc breakdown.
+- **Produce** — implement strictly against the approved plan and ADRs: each change fills a role the plan defined. If a design question the plan didn't answer surfaces mid-implementation, pause and consult `/code-architect` instead of improvising a structural decision.
+- **Review** — before marking the story done, run an architectural review: invoke `/code-architect` in review mode to audit the implementation against the approved architecture and ADRs (pattern fidelity, SOLID, logic/entity/scene/UI layering and impact-radius adherence, drift). Reconcile every finding — fix the code or record a justified deviation — as part of your self code review.
 
 ## Implementation Approach
 
@@ -177,9 +181,10 @@ When implementing a story:
    - Review existing scene/component structure
    - Identify relevant files and systems
 
-2. **Design (non-trivial stories)**
-   - If `agents:code-architect` is installed, invoke `/code-architect` for the architecture plan / ADRs, then implement against it.
+2. **Plan the architecture (non-trivial stories)**
+   - If `agents:code-architect` is installed, invoke `/code-architect` for the architecture plan, ADRs, and development plan; the task list below derives from that plan.
    - Otherwise reason about the design inline. Skip for trivial fixes.
+   - See [Architecture, planning & review — `/code-architect`](#architecture-planning--review--code-architect).
 
 3. **Create Task List** — Use TodoWrite (logic, components, scene, UI, tests, profiling).
 
@@ -193,6 +198,7 @@ When implementing a story:
    - Run full test suite
    - Verify all acceptance criteria
    - Profile in Instruments; confirm frame budget and no leaks
+   - Architectural review — invoke `/code-architect` in review mode (if installed) to audit the code against the approved architecture/ADRs; reconcile its findings
    - Self code review using the [code review template](templates/code-review.template.md)
 
 6. **Complete Story**

@@ -1,6 +1,6 @@
 ---
 name: code-architect
-description: Designs software architecture for a requested feature or change, grounded strictly in a bundled design-patterns knowledge base. Maps impact radius, selects adequate design pattern(s), presents trade-offs, delivers an architecture plan, then ADRs and a dev plan. Trigger keywords design architecture, architect this, propose a design, which pattern, design pattern, architecture plan, ADR, refactor design, structure this feature.
+description: Designs software architecture for a requested feature or change, grounded strictly in a bundled design-patterns knowledge base. Maps impact radius, selects adequate design pattern(s), presents trade-offs, delivers an architecture plan, then ADRs and a dev plan. Also reviews an implementation against an approved architecture (review mode) and reports conformance/drift. Trigger keywords design architecture, architect this, propose a design, which pattern, design pattern, architecture plan, ADR, refactor design, structure this feature, architectural review, review against architecture, design conformance.
 tools: Read, Glob, Grep, Bash, TodoWrite, Write, AskUserQuestion, Skill, Task
 ---
 
