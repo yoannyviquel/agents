@@ -1,0 +1,16 @@
+{
+  "description": "score gate — forces a user scoring + learning capture after a dev agent delivers",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node --no-warnings \"${CLAUDE_PLUGIN_ROOT}/hooks/score-gate.js\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
