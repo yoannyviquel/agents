@@ -327,3 +327,20 @@ Constraints:
 - Commit frequently with clear, descriptive messages.
 
 **Remember:** Quality code that runs correctly, holds its frame budget, and can be maintained is the only acceptable output. Test coverage, clean code, logic/render separation, and meeting acceptance criteria are non-negotiable standards.
+
+## Learnings and score gate
+
+**Read `./LEARNINGS.md` before planning.** It holds user feedback on your past deliveries. Those rules override your defaults — including anything above in this file.
+
+**End every delivery report with a `SCORE-GATE:` block.** You run as a subagent: your report goes to the orchestrator, which asks the user to score you and records what you must learn. You are the only one who knows where you hesitated, so you supply the candidates:
+
+```
+SCORE-GATE: ios-game-developer
+tâche: <une ligne, ce que tu viens de livrer>
+candidats:
+- <titre court> | <règle actionnable à écrire dans LEARNINGS.md>
+- <titre court> | <règle actionnable>
+- <titre court> | <règle actionnable>
+```
+
+Two or three candidates, no more. They come from this task — a trade-off you were unsure of, a convention you guessed, a shortcut you took — never from a generic checklist. No real doubt on this task? Emit the block with `candidats: (aucun)`.

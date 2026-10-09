@@ -78,6 +78,20 @@ The skills become available immediately — no build step (pure Markdown + bundl
 
 ## 📁 Structure
 
+## Score gate — the agents learn from your feedback
+
+The four dev agents keep a `LEARNINGS.md` next to their `SKILL.md` and read it before planning anything.
+
+How a line gets in there: a `Stop` hook watches for a dev agent that delivered without being scored, and blocks the turn until you are asked two questions — a score out of 4, then what the agent should learn. The candidate learnings are proposed by the agent itself (it ends its report with a `SCORE-GATE:` block listing what it hesitated on), so the common case is two clicks. A clean delivery with nothing to learn writes nothing: only mistakes accumulate.
+
+The gate blocks at most once per delivery — if the orchestrator ignores it, the turn ends normally rather than deadlocking.
+
+`LEARNINGS.md` is short-term memory and costs context on every task. Once a rule has recurred three times, `/agent-tune <agent>` promotes it into `SKILL.md` and prunes the rows. That promotion is the actual learning; the rest is just a log.
+
+Self-check: `node hooks/test-score-gate.js`.
+
+---
+
 <details>
 <summary><b>Repository layout</b></summary>
 
@@ -85,11 +99,13 @@ The skills become available immediately — no build step (pure Markdown + bundl
 agents/
 ├── .claude-plugin/plugin.json
 ├── package.json
+├── commands/agent-tune.md
+├── hooks/                     hooks.json + score-gate.js + test-score-gate.js
 └── skills/
-    ├── dotnet-developer/      SKILL.md + resources/ + templates/
-    ├── react-developer/       SKILL.md + resources/ + templates/ + scripts/
-    ├── nodejs-developer/      SKILL.md + resources/ + templates/ + scripts/
-    ├── ios-game-developer/    SKILL.md + resources/ + templates/
+    ├── dotnet-developer/      SKILL.md + LEARNINGS.md + resources/ + templates/
+    ├── react-developer/       SKILL.md + LEARNINGS.md + resources/ + templates/ + scripts/
+    ├── nodejs-developer/      SKILL.md + LEARNINGS.md + resources/ + templates/ + scripts/
+    ├── ios-game-developer/    SKILL.md + LEARNINGS.md + resources/ + templates/
     └── code-architect/
         ├── SKILL.md
         └── references/
